@@ -1,0 +1,19 @@
+{
+  "SuppliersData": [
+    { "id":1,
+      "supplierName":"sun pharma"
+    },
+    { "id":2,
+      "supplierName":"cipla pharma"
+    },
+    { "id":3,
+      "supplierName":"mankind pharma"
+    },
+    { "id":4,
+      "supplierName":"mindtree pharma"
+    },
+    { "id":5,
+      "supplierName":"galeria pharma"
+    }
+  ]
+}

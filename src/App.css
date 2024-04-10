@@ -1,0 +1,154 @@
+/* Add these styles at the end of your CSS file */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  font-size: 16px;
+}
+body {
+  background: #eeedeb;
+}
+h1 {
+  font-size: 24px;
+}
+h2 {
+  font-size: 20px;
+}
+.inputFields label {
+  color: rgba(97, 92, 92, 0.647);
+  font-size: 16px;
+}
+.inputFields input,
+.inputFields select,
+.inputFields .dropdown {
+  background-color: transparent;
+  border: 1px solid rgba(128, 128, 128, 0.708);
+}
+.select {
+  color: rgba(97, 92, 92, 0.647);
+}
+.image {
+  border: 1px solid rgba(97, 92, 92, 0.647);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+input[type="file"] {
+  outline: none;
+  border: none;
+}
+
+.upload-file {
+  border: 1px solid rgba(128, 128, 128, 0.708);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* applying styles for header */
+header {
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #d8d2d2;
+  height: 70px;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.logo {
+  margin-left: 25px;
+}
+.navbars {
+  position: relative;
+  background-color: #bbb9b5;
+  top: 70px;
+  width: 100%;
+  margin-bottom: 70px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  height: 50px;
+}
+
+.navbars .navitem {
+  list-style-type: none;
+
+  display: flex;
+  align-items: center;
+
+  margin: auto 0;
+}
+.navbars .navitem a {
+  text-decoration: none;
+  margin-right: 50px;
+}
+
+.active {
+  background-color: rgb(3, 3, 96);
+  cursor: pointer;
+  color: white;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.imageupload-input {
+  display: none;
+}
+
+.custom-file-upload {
+  width: 100%;
+  display: inline-block;
+  padding: 10px 15px;
+  color: #000; /* Change text color as needed */
+  border-radius: 5px; /* Add border-radius as needed */
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+
+.custom-file-upload:hover {
+  background-color: #e9ecef; /* Change hover background color as needed */
+}
+#search_input {
+  /* background-color: transparent; */
+  border: none !important;
+}
+
+.searchBox::placeholder {
+  color: red; /* default color */
+}
+
+.iserror {
+  position: relative;
+  top: -30px;
+  left: 10px;
+  z-index: -1;
+
+}
+
+/* view data actions */
+.editbtn,.delbtn{
+  padding: 8px 16px; /* Adjust padding as needed */
+  margin-right: 8px; /* Adjust margin as needed */
+  border: none;
+  cursor: pointer;
+  background-color: rgb(3, 3, 96);
+  color: #ffffff; /* Text color */
+  border-radius: 4px; /* Rounded corners */
+width: 100px;
+margin-bottom: 5px;
+  
+}
+.swal2-popup{
+  width:400px;
+  height: auto;
+  top: 50px;
+}
+.swal2-custom-size {
+  width: 400px; /* Adjust width as per your preference */
+  height: auto; /* Adjust height as per your preference */
+  top: 50px; /* Adjust top position to move it towards the top of the window */
+}
