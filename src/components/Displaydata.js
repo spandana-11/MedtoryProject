@@ -26,6 +26,7 @@ const Displaydata = () => {
   console.log(existingData);
   return (
     <>
+    <h1>hello</h1>
       <Header />
       {isError&&<p style={{color:"red"}}>something went wrong</p>}
 {Loading && <p style={{color:"red"}}>Loading....</p>}
