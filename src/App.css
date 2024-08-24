@@ -152,3 +152,11 @@ margin-bottom: 5px;
   height: auto; /* Adjust height as per your preference */
   top: 50px; /* Adjust top position to move it towards the top of the window */
 }
+/* for the loader */
+.Loader{
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%,-50%);
+ z-index: 9999;
+}

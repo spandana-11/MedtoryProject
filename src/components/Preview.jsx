@@ -18,8 +18,14 @@ function Preview() {
     handleClose,
     suppres,
     setSuppRes,
+    isEdit,
+    setisEdit,
+    updateBtn,
+    setUpdateBtn,
+    finaldata,
   } = getData;
   // console.log(suppres[2])
+  console.log(finaldata);
   return (
     <>
       <Modal show={show} onHide={handleClose} animation={false}>
@@ -29,58 +35,71 @@ function Preview() {
         <Modal.Body>
           {/* <div style={{ display: "flex" }}>
             <div style={{ flex: 1 }}> */}
-              <table className="table table-striped border w-100">
-                <tbody>
-                
-                    <tr>
-                      <th>{col[1]}</th>
-                      <td>{formData.itemname}</td>
-                    </tr>
-                    <tr>
-                      <th>{col[2]}</th>
-                      <td>{formData.description}</td>
-                    </tr>
-                    <tr>
-                      <th>{col[3]}</th>
-                      <td>{formData.category}</td>
-                    </tr>
-                    <tr>
-                      <th>{col[4]}</th>
-                      <td>{formData.manufacturer}</td>
-                    </tr>
-                    <tr>
-                      <th>{col[5]}</th>
-                      <td>{formData.unitOfMeasure}</td>
-                    </tr>
-                    <tr>
-                      <th>{col[6]}</th>
-                      <td>{formData.unitPrice}</td>
-                    </tr>
-                    <tr>
-                      <th>{col[7]}</th>
-                      <td>{formData.initialQuantity}</td>
-                    </tr>
-                    <tr>
-                      <th>{col[8]}</th>
-                      <td>{formData.expirationDate}</td>
-                    </tr>
-                    <tr>
-                      <th>{col[9]}</th>
-                      <td>{formData.reorderlevel}</td>
-                    </tr>
-                    <tr>
-                      <th>{col[10]}</th>
-                      <td>{formData.suppliers}</td>
-                    </tr>
+          <table className="table table-striped border w-100">
+            <tbody>
+              {/* <tr>
+                      <th>sku</th>
+                      <td>{formData.sku || "NA"}</td>                   
+          </tr>*/}
+<tr>
+                <th>sku</th>
+                <td>{formData.sku}</td>
+              </tr>
+              <tr>
+                <th>id</th>
+                <td>{formData.id}</td>
+              </tr>
+              <tr>
+                <th>itemname</th>
+                <td>{formData.itemname}</td>
+              </tr>
+              <tr>
+                <th>description</th>
+                <td>{formData.description}</td>
+              </tr>
+              <tr>
+                <th>category</th>
+                <td>{formData.category}</td>
+              </tr>
+              <tr>
+                <th>manufacturer</th>
+                <td>{formData.manufacturer}</td>
+              </tr>
+              <tr>
+                <th>unitOfMeasure</th>
+                <td>{formData.unitOfMeasure}</td>
+              </tr>
+              <tr>
+                <th>UnitPrice</th>
+                <td>{formData.unitPrice}</td>
+              </tr>
+              <tr>
+                <th>IntialQuantity</th>
+                <td>{formData.initialQuantity}</td>
+              </tr>
+              <tr>
+                <th>ExpirationDate</th>
+                <td>{formData.expirationDate}</td>
+              </tr>
+              <tr>
+                <th>Reorderlevel</th>
+                <td>{formData.reorderlevel}</td>
+              </tr>
+              <tr>
+                <th>suppliers</th>
+                <td>{formData.suppliers}</td>
+              </tr>
+              <tr>
+                <th>ImageUpload</th>
+                <td><img src={formData.imageUpload} width="40%" alt="" /></td>
+              </tr>
+             
 
-                    <tr>
-                      <th>{col[11]}</th>
-                      <td>{formData.imageUpload}</td>
-                    </tr>
-                  
-                </tbody>
-              </table>
-            {/* </div>
+             
+            
+            </tbody>
+          </table>
+          {/* </div>
           </div> */}
         </Modal.Body>
 
@@ -88,9 +107,15 @@ function Preview() {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleSubmit}>
-            Submit
-          </Button>
+          {updateBtn ? (
+            <Button variant="primary" onClick={handleSubmit}>
+              Update
+            </Button>
+          ) : (
+            <Button variant="primary" onClick={handleSubmit}>
+              Submit
+            </Button>
+          )}
         </Modal.Footer>
       </Modal>
     </>

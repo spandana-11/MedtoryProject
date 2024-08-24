@@ -3,7 +3,7 @@ import Additem from './components/Additem'
 import 'bootstrap/dist/css/bootstrap.css';
 import Displaydata from './components/Displaydata';
 import { Routes,Route } from 'react-router-dom';
-import Reorderlevel from './components/Reorderlevel';
+import Notification from './components/Notification';
 
 
 function App() {
@@ -15,7 +15,8 @@ function App() {
     <Routes>
       <Route path='/' element={<Additem/>}/>
       <Route path='/displaydata' element={<Displaydata/>}/>
-      <Route path='/reorderlevel' element={<Reorderlevel/>}/>
+      <Route path='/Notification' element={<Notification/>}/>
+      
       
     </Routes>
     

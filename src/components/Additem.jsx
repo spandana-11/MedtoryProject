@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTable, faUpload } from "@fortawesome/free-solid-svg-icons";
 import { AddItemContext } from "../components/UseContext";
 import Header from "./Header";
+
 import Preview from "./Preview";
 import Button from "react-bootstrap/Button";
-import Multiselect from "multiselect-react-dropdown";
+import { Multiselect } from "multiselect-react-dropdown";
 
 function Additem() {
   // console.log(suppres)
+
   const getData = AddItemContext();
   const {
     formData,
@@ -25,6 +27,7 @@ function Additem() {
     Loading,
     setLoading,
     isError,
+    multiSelectRef,
   } = getData;
   const handleInputChange = (e) => {
     const { value } = e.target;
@@ -45,15 +48,20 @@ function Additem() {
   const style1 = {
     color: "red",
   };
-  console.log(formData);
 
   return (
     <>
       <Header />
       <Preview />
+
       <div className="d-flex w-100 justify-content-center align-items-center mt-5">
         <form className="w-75">
-          <h1 className="text-center addItem" style={{color:"rgb(3, 3, 96)"}}>ADD ITEM</h1>
+          <h1
+            className="text-center addItem"
+            style={{ color: "rgb(3, 3, 96)" }}
+          >
+            ADD ITEM
+          </h1>
           <div className="inputFields" style={style}>
             <div className="p-2 col-lg-6 col-md-6 col-sm-12">
               <label htmlFor="itemname" className="form-label">
@@ -107,11 +115,12 @@ function Additem() {
                 required
               >
                 <option selected>Select...</option>
-                <option value="medical">Medical</option>
-                <option value="ot">OT</option>
-                <option value="icu">ICU</option>
-                <option value="nicu">NICU</option>
+                <option value="medical">medical</option>
+                <option value="Ayurvedic">Ayurvedic</option>
+                <option value="Generic">Generic</option>
+                <option value="consomotic">consomotic</option>
                 <option value=" MedicalSupplies"> Medical Supplies </option>
+                <option value=" drug"> drug </option>
               </select>
             </div>
 
@@ -221,12 +230,18 @@ function Additem() {
             {/* multi selection  */}
             <div className=" p-2 col-lg-6 col-md-6 col-sm-12">
               <label htmlFor="Suppliers" className="Suppliers">
-                Suppliers  <span style={style1}>*</span>
+                Suppliers <span style={style1}>*</span>
               </label>
               {Loading && <p>Loading....</p>}
               <div>
                 <Multiselect
-                  className={isError ? "multiselecterField isError" : "multiselecterField"}  
+                  ref={multiSelectRef}
+                  id="supplirinput"
+                  className={
+                    isError
+                      ? "multiselecterField isError"
+                      : "multiselecterField"
+                  }
                   options={suppliers.map((eachsupp) => {
                     return eachsupp.supplierName;
                   })}
@@ -235,12 +250,19 @@ function Additem() {
                   onRemove={(event) => setSuppRes(event)}
                   onChange={handleInputChange}
                   placeholder=""
-                  
-                  />
-              <label htmlFor="" className="iserror">{isError ?<span style={{color:"red"}}>something went wrong....</span> :<span>Select..</span>}</label>
+                />
+
+                <label htmlFor="" className="iserror">
+                  {isError ? (
+                    <span style={{ color: "red" }}>
+                      something went wrong....
+                    </span>
+                  ) : (
+                    <span>Select..</span>
+                  )}
+                </label>
+              </div>
             </div>
-            </div>
-             
 
             <label htmlFor="imageupload">Upload image</label>
             <div className="image col-lg-12 col-md-12 col-sm-12 p-2">
@@ -250,26 +272,34 @@ function Additem() {
                 name="imageupload"
                 id="image"
                 onChange={(e) => {
-                  setimagePreview(URL.createObjectURL(e.target.files[0]));
-                  setFormData({
-                    ...formData,
-                    imageUpload: e.target.files[0].name,
-                  });
+                  // setimagePreview(e.target.files[0].name);
+                  const file = new FileReader();
+                  file.readAsDataURL(e.target.files[0]);
+                  file.onload = (imageUpload) => {
+                    setFormData({
+                      ...formData,
+                      imageUpload: imageUpload.target.result,
+                    });
+                  };
                 }}
               />
               <label htmlFor="image" className="custom-file-upload">
-                {formData.imageUpload
-                  ? formData.imageUpload
-                  : "choose file...."}
+                {imagePreview ? imagePreview : "choose file...."}
                 <FontAwesomeIcon icon={faUpload} />
               </label>
             </div>
-            <img src={imagePreview} alt="" width={"100px"} />
+            <img src={formData.imageUpload} alt="" width={"100px"} />
             <div>{/* image upload  */}</div>
           </div>
 
-          <div className="submit_btn d-flex justify-content-end mt-3 mb-3" style={style}>
-            <Button  onClick={handleShow} style={{background:"rgb(3, 3, 96)"}}>
+          <div
+            className="submit_btn d-flex justify-content-end mt-3 mb-3"
+            style={style}
+          >
+            <Button
+              onClick={handleShow}
+              style={{ background: "rgb(3, 3, 96)" }}
+            >
               preview
             </Button>
           </div>

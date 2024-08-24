@@ -1,10 +1,15 @@
 import React from "react";
 import Header from "./Header";
-// import DataTable from 'react-data-table-component'
-
+import {useNavigate} from 'react-router-dom'
+import Swal from 'sweetalert2';
+import Notification from "./Notification";
 import { AddItemContext } from "../components/UseContext";
+import FadeLoader from "react-spinners/FadeLoader";
+
 
 const Displaydata = () => {
+const usenavigate=useNavigate()
+
   const getData = AddItemContext();
   const {
     formData,
@@ -12,6 +17,7 @@ const Displaydata = () => {
     handleSubmit,
     suppliers,
     existingData,
+    setExistingData,
     col,
     handleShow,
     suppres,
@@ -21,14 +27,44 @@ const Displaydata = () => {
     Loading,
     setLoading,
     isError,
-    handledelete
+    handleDelete,
+    handleEdit,
+    isEdit,
+        setisEdit,
+        updateBtn,
+        setUpdateBtn,
+        handleDecrement,
+        reorderData,
+        setReorderData
+        , setNotficatonshow,
+        notficatonshow
   } = getData;
   console.log(existingData);
+  if(Loading){
+    return(
+    <div className="Loader">
+<FadeLoader 
+        
+        loading={Loading}
+        color="blue"
+        size={150}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+    </div>
+
+    )
+  }
   return (
     <>
+    
       <Header />
+      {notficatonshow&&
+      <Notification/>
+
+      }
       {isError&&<p style={{color:"red"}}>something went wrong</p>}
-{Loading && <p style={{color:"red"}}>Loading....</p>}
+
 {
 !Loading&& <div className="card " >
 <div className="card-header" >INVENTORY ITEM</div>
@@ -52,18 +88,27 @@ const Displaydata = () => {
         return (
           <tr key={index}>
             <td>{eachitem.id}</td>
-
+            <td></td>
             <td>{eachitem.itemname}</td>
             <td>{eachitem.description}</td>
             <td>{eachitem.category}</td>
             <td>{eachitem.manufacturer}</td>
             <td>{eachitem.unitOfMeasure}</td>
             <td>{eachitem.unitPrice}</td>
-            <td>{eachitem.initialQuantity}</td>
+            <td>{eachitem.initialQuantity}<button onClick={()=>handleDecrement(eachitem.id)}>-</button></td>
             <td>{eachitem.expirationDate}</td>
-            <td>{eachitem.suppliers}</td>
-            <td>{eachitem.imageUpload}</td>
-            <td><button className="editbtn" >Edit</button><button className="delbtn" onClick={()=>handledelete(eachitem.id)}>Delete</button></td>
+            <td>{eachitem.reorderlevel}</td>
+           
+            <td>{
+           eachitem.suppliers
+            }
+      
+            </td>
+            <td><img src={eachitem.imageUpload} width="100%" alt="" /></td>
+           
+            
+            <td><button className="editbtn" onClick={()=>{handleEdit(eachitem.id);usenavigate('/')}}>Edit</button>
+            <button className="delbtn" onClick={()=>handleDelete(eachitem.id)}>Delete</button></td>
             
             
 
